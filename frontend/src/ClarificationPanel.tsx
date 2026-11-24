@@ -8,6 +8,7 @@ export function ClarificationPanel({project,onChanged}:{project:ProjectDetail;on
   const answerId=useId()
   if(project.status!=='awaiting_input')return null
   const questions=Array.isArray(project.state.clarification_questions)?project.state.clarification_questions as {value:string}[]:[]
+  const askingTimes=questions.length>0&&questions.every(question=>/giờ/i.test(question.value))
   async function submit(){
     if(busy||!answer.trim())return
     setBusy(true);setError('')
@@ -23,8 +24,8 @@ export function ClarificationPanel({project,onChanged}:{project:ProjectDetail;on
         <details className="clarification-brief"><summary>Yêu cầu bạn đã gửi</summary><p>{project.prompt}</p></details>
       </div>
       <form className="clarification-form" onSubmit={e=>{e.preventDefault();void submit()}} aria-busy={busy}>
-        <label htmlFor={answerId}>Câu trả lời của bạn</label><p id={`${answerId}-hint`}>Bạn có thể trả lời tất cả câu hỏi trong cùng một nội dung.</p>
-        <textarea id={answerId} aria-describedby={`${answerId}-hint ${answerId}-count`} maxLength={4000} rows={6} disabled={busy} value={answer} placeholder="Ví dụ: Ngân sách 10 triệu VND cho cả chuyến đi, gồm 2 người lớn. Tôi muốn ưu tiên tham quan và ẩm thực địa phương." onChange={e=>setAnswer(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();void submit()}}}/>
+        <label htmlFor={answerId}>Câu trả lời của bạn</label><p id={`${answerId}-hint`}>{askingTimes?'Giờ đến ngày đầu và giờ rời điểm du lịch ngày cuối. Không cần khai giờ về đến nhà.':'Bạn có thể trả lời tất cả câu hỏi trong cùng một nội dung.'}</p>
+        <textarea id={answerId} aria-describedby={`${answerId}-hint ${answerId}-count`} maxLength={4000} rows={6} disabled={busy} value={answer} placeholder={askingTimes?'Ví dụ: Đến 10h, về 18h.':'Ví dụ: Ngân sách 10 triệu VND cho cả chuyến đi, gồm 2 người lớn. Tôi muốn ưu tiên tham quan và ẩm thực địa phương.'} onChange={e=>setAnswer(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();void submit()}}}/>
         <div className="clarification-input-meta"><span>Ctrl / ⌘ + Enter để gửi</span><span id={`${answerId}-count`}>{answer.length.toLocaleString('vi-VN')} / 4.000 ký tự</span></div>
         {error&&<p className="form-error" role="alert">{error}</p>}
         <div className="clarification-submit"><span><Check size={14}/>Tiếp tục sau khi gửi câu trả lời</span><button type="submit" className="primary" disabled={busy||!answer.trim()}>{busy?<RefreshCw size={16} className="spin"/>:<ArrowRight size={16}/>} {busy?'Đang gửi…':'Gửi và tiếp tục'}</button></div>

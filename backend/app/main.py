@@ -122,11 +122,13 @@ def create_app(settings: Settings | None = None, *, database: Database | None = 
             app.openapi_schema = None
         manager.set_loop(asyncio.get_running_loop())
         manager.resume_pending()
+        manager.notifications.start()
         try:
             yield
         finally:
             for project_id in list(manager.running):
                 await manager.stop(project_id)
+            await asyncio.to_thread(manager.notifications.close)
 
     app = FastAPI(title="TravelBook Studio API", version="0.1.0", lifespan=lifespan,
         description="Quản lý dự án, sự kiện và file đầu ra của TravelBook Studio.")

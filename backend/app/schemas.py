@@ -189,12 +189,27 @@ class WeatherReport(Schema):
     notes: list[Fact[Text]] = Field(default_factory=list)
 
 
+class VenueRecommendation(Schema):
+    id: Text
+    kind: Literal['restaurant','hotel']
+    name: Fact[Text]
+    latitude: Fact[Annotated[float,Field(ge=-90,le=90,allow_inf_nan=False)]]
+    longitude: Fact[Annotated[float,Field(ge=-180,le=180,allow_inf_nan=False)]]
+    source_url: Fact[AnyHttpUrl]
+    address: Fact[Text] | None = None
+    opening_hours: Fact[Text] | None = None
+    accommodation_type: Literal['hotel','guest_house','hostel'] | None = None
+    stars: int | None = Field(default=None,ge=0,le=5)
+
+
 class ActivitySlot(Schema):
     kind: Literal['breakfast', 'lunch', 'dinner', 'rest', 'hotel', 'transfer', 'terminal', 'free_time']
     title: Fact[Text]
     start: Fact[time]
     end: Fact[time]
     within_place_id: Text | None = None
+    venue: VenueRecommendation | None = None
+    venue_transfer_minutes: Fact[NonNegativeInt] | None = None
 
     @model_validator(mode='after')
     def check_times(self):

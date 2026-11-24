@@ -48,7 +48,9 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(Budget.model_validate(project["state"]["budget"]).total.value, 3700000)
         reader = PdfReader(project["final_pdf"])
         try:
-            self.assertEqual(len(reader.pages), 11)
+            manifest=json.loads(Path(project['final_pdf']).with_suffix('.manifest.json').read_text(encoding='utf-8'))
+            self.assertEqual(len(reader.pages), manifest['page_count'])
+            self.assertTrue({'day_1','day_2','day_3','timeline'} <= {item['id'] for item in manifest['sections']})
             self.assertIn("Đà Nẵng", reader.pages[0].extract_text())
         finally:
             reader.close()

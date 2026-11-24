@@ -90,7 +90,7 @@ class LayoutTests(unittest.TestCase):
             reader.close()
 
     def test_schedule_meals_hotel_and_journey_times_appear_in_pdf(self):
-        from backend.app.schemas import TripRequest, DayPlan
+        from backend.app.schemas import TripRequest, DayPlan, VenueRecommendation
         from backend.app.services.day_schedule import day_frame
         from datetime import date, timedelta
         f=lambda value:{'value':value,'source':'synthetic:export-verification','confidence':.5}
@@ -105,13 +105,21 @@ class LayoutTests(unittest.TestCase):
             day['stops']=day['stops'][:1]
             day['stops'][0].update(arrival=f('14:30' if i==0 else '09:15'),departure=f('16:00' if i==0 else '10:45'),travel_minutes=f(30))
             day['activities']=[item.model_dump(mode='json') for item in day_frame(trip,stamp,480,1260)[2]]
+            for item in day['activities']:
+                if item['kind'] in {'lunch','hotel'}:
+                    restaurant=item['kind']=='lunch'
+                    name='Nhà hàng kiểm thử' if restaurant else 'Khách sạn kiểm thử'
+                    item['title']=f(('Ăn trưa tại ' if restaurant else 'Lưu trú tại ')+name)
+                    item['venue']=VenueRecommendation(id='test-restaurant' if restaurant else 'test-hotel',kind='restaurant' if restaurant else 'hotel',
+                        name=f(name),latitude=f(16),longitude=f(108),address=f('123 Đường Kiểm Thử'),
+                        source_url=f('https://www.openstreetmap.org/node/1')).model_dump(mode='json')
             DayPlan.model_validate(day)
         path=Path(self.directory.name)/'schedule.pdf'
         self.service.build_pdf(path,trip_request=trip,with_toc=True,**args)
         reader=PdfReader(path)
         try:
             full='\n'.join(page.extract_text() for page in reader.pages)
-            for phrase in ('Ăn trưa','Ăn tối','Nghỉ trưa','chưa chọn khách sạn','Rời nơi khởi hành','Đến điểm du lịch','19:30 - 28/11/2026'):
+            for phrase in ('Nhà hàng kiểm thử','Khách sạn kiểm thử','123 Đường Kiểm Thử','Ăn tối','Nghỉ trưa','Rời nơi khởi hành','Đến điểm du lịch','19:30 - 28/11/2026','Timeline toàn chuyến'):
                 self.assertIn(phrase,full)
         finally:
             reader.close()

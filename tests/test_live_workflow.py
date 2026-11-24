@@ -71,10 +71,17 @@ class LiveWorkflowTests(unittest.IsolatedAsyncioTestCase):
         planner=AsyncMock(return_value=PlannerResult(status='ready',itinerary=days))
         editor=AsyncMock(return_value=ContentResult(document=document,model='mock-editor',cache_hit=False))
         curator=AsyncMock(return_value=CurationResult(missing_place_ids=[place.id for place in places]))
-        with patch('backend.app.live_workflow.ResearcherAgent.research',research),patch('backend.app.live_workflow.PlannerAgent.plan',planner),patch('backend.app.live_workflow.ContentEditorAgent.edit',editor),patch('backend.app.live_workflow.ImageCuratorAgent.curate',curator):
+        with patch('backend.app.live_workflow.ResearcherAgent.research',research),patch('backend.app.live_workflow.PlannerAgent.plan',planner),patch('backend.app.live_workflow.ContentEditorAgent.edit',editor),patch('backend.app.live_workflow.ImageCuratorAgent.curate',curator), \
+             patch.object(self.app.state.manager.notifications,'agent_completed') as agent_notice, \
+             patch.object(self.app.state.manager.notifications,'project_completed') as pdf_notice:
             response=await self.client.post('/api/projects',json={'prompt':'Phú Quốc','trip_request':self.trip.model_dump(mode='json'),'start_workflow':True})
             pid=response.json()['id'];row=await self.wait(pid)
         self.assertEqual(row['status'],'completed',row['error'])
+        self.assertEqual([call.args[1] for call in agent_notice.call_args_list].count('pm_finalize'),1)
+        self.assertEqual(len(agent_notice.call_args_list),11)
+        pdf_notice.assert_called_once()
+        self.assertEqual(pdf_notice.call_args.args[0],pid)
+        self.assertTrue(pdf_notice.call_args.args[1]['completed'])
         self.assertFalse(row['state']['fixture_mode'])
         self.assertEqual(row['state']['trip_request']['destination']['value'],'Phú Quốc')
         self.assertEqual(research.await_args.args[0].destination.value,'Phú Quốc')

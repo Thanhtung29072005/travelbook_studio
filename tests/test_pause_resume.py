@@ -64,7 +64,9 @@ class PauseResumeTests(unittest.IsolatedAsyncioTestCase):
         row=self.db.get_project('pause-test')
         self.assertEqual(row['status'],'completed',row['error'])
         with PdfReader(row['final_pdf']) as reader:
-            self.assertEqual(len(reader.pages),11)
+            manifest=json.loads(Path(row['final_pdf']).with_suffix('.manifest.json').read_text(encoding='utf-8'))
+            self.assertEqual(len(reader.pages),manifest['page_count'])
+            self.assertTrue({'day_1','day_2','day_3'} <= {item['id'] for item in manifest['sections']})
             self.assertIn('Đà Nẵng',reader.pages[0].extract_text())
         return row
 

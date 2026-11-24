@@ -116,6 +116,11 @@ class Settings(BaseSettings):
     photo_min_relevance: float = Field(default=0.75, ge=0.1, le=1)
     photo_utm_source: str = Field(default="travelbook_studio", pattern=r"^[a-zA-Z0-9_-]{1,64}$")
     reviewer_max_daily_distance_km: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    telegram_enabled: bool = False
+    telegram_bot_token: SecretStr = SecretStr('')
+    telegram_chat_id: str = ''
+    telegram_message_thread_id: int | None = Field(default=None, gt=0)
+    telegram_timeout_seconds: float = Field(default=15, gt=0, le=60)
 
     @field_validator("nine_router_base_url", "nominatim_base_url", "overpass_url", "wikidata_entity_base_url", "wikidata_query_url", "open_meteo_url", "osrm_base_url", "ors_base_url", "wikimedia_api_url", "unsplash_base_url", "pexels_base_url")
     @classmethod

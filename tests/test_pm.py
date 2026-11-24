@@ -74,8 +74,49 @@ class PMTests(unittest.IsolatedAsyncioTestCase):
         self.payload['departure']=field('Hà Nội','Hà Nội')
         result=await self.agent.normalize(PROMPT+' Từ Hà Nội.')
         self.assertEqual(result.status,'needs_clarification')
-        self.assertTrue(any('ngày/giờ đến' in q.value and 'ngày/giờ về' in q.value for q in result.questions))
+        self.assertEqual(len(result.questions),1)
+        self.assertTrue(any('giờ đến' in q.value and 'giờ về' in q.value for q in result.questions))
         self.assertEqual(result.tasks,[])
+
+    async def test_two_destination_times_are_enough_despite_old_model_questions(self):
+        self.payload['departure']=field('Hà Nội','Hà Nội')
+        self.payload['questions']=['Bạn về đến Hà Nội lúc mấy giờ?', 'Phương tiện đi lại là gì?']
+        result=await self.agent.normalize(PROMPT+' Từ Hà Nội. Đến 10h, về 18h.')
+        self.assertEqual(result.status,'ready')
+        trip=result.trip_request
+        self.assertEqual(trip.destination_arrival_at.value.isoformat(),'2026-11-26T10:00:00+07:00')
+        self.assertEqual(trip.destination_departure_at.value.isoformat(),'2026-11-28T18:00:00+07:00')
+        self.assertIsNone(trip.outbound_departure_at)
+        self.assertIsNone(trip.return_arrival_at)
+
+    async def test_partial_arrival_is_kept_and_only_return_time_is_asked(self):
+        self.payload['departure']=field('Hà Nội','Hà Nội')
+        first=await self.agent.normalize(PROMPT+' Từ Hà Nội. Đến 10h.')
+        self.assertEqual(first.status,'needs_clarification')
+        self.assertEqual(len(first.questions),1)
+        self.assertNotIn('giờ đến',first.questions[0].value)
+        self.payload={'questions':['Bạn đến Đà Nẵng lúc mấy giờ?']}
+        second=await self.agent.normalize('Về 6h chiều.',partial_request=first.partial_request)
+        self.assertEqual(second.status,'ready')
+        self.assertEqual(second.trip_request.destination_arrival_at.value.hour,10)
+        self.assertEqual(second.trip_request.destination_departure_at.value.hour,18)
+
+    async def test_latest_short_answer_overrides_old_conflicting_times(self):
+        self.payload['departure']=field('Hà Nội','Hà Nội')
+        self.payload['destination_arrival_at']=field('2026-11-26T18:00:00+07:00','đến 18h')
+        self.payload['return_arrival_at']=field('2026-11-28T10:00:00+07:00','về đến Hà Nội 10h')
+        result=await self.agent.normalize(PROMPT+' Từ Hà Nội, đến 18h, về đến Hà Nội 10h.\nAdditional user answer:\nĐến 10:00, về 18:00.')
+        self.assertEqual(result.status,'ready')
+        self.assertEqual(result.trip_request.destination_arrival_at.value.hour,10)
+        self.assertEqual(result.trip_request.destination_departure_at.value.hour,18)
+
+    async def test_explicit_full_destination_dates_are_preserved(self):
+        self.payload['departure']=field('Hà Nội','Hà Nội')
+        self.payload['destination_arrival_at']=field('2026-11-27T00:30:00+07:00','đến ngày 27/11 lúc 00:30')
+        self.payload['destination_departure_at']=field('2026-11-28T18:00:00+07:00','rời ngày 28/11 lúc 18:00')
+        result=await self.agent.normalize(PROMPT+' Từ Hà Nội, đến ngày 27/11 lúc 00:30, rời ngày 28/11 lúc 18:00.')
+        self.assertEqual(result.status,'ready')
+        self.assertEqual(result.trip_request.destination_arrival_at.value.day,27)
 
     async def test_explicit_flexible_ticket_times_allow_provisional_plan(self):
         self.payload['departure']=field('Hà Nội','Hà Nội')

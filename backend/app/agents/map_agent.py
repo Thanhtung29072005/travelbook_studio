@@ -172,7 +172,7 @@ class MapAgent(BaseAgent):
         paths = [(path, "map", ("itinerary", "places"), (1200, 800)) for path in render_day_maps(days, places, folder / "maps", layers=layers)]
         paths.extend([(render_budget_chart(budget, folder / "charts/budget.png"), "chart", ("budget",), (1200, 800)),
                       (render_weather_chart(days, folder / "charts/weather.png", forecasts=forecasts), "chart", ("itinerary", "weather"), (1200, 800))])
-        timeline_size = (1400, min(6000, max(900, sum(len(day.stops)+len(day.activities) for day in days)*60 + 240)))
+        timeline_size = (1400, min(6000, max(900, sum(len(day.stops)+len(day.activities) for day in days)*110 + 220)))
         paths.append((render_timeline_chart(days, places, folder / "charts/timeline.png", size=timeline_size), "chart", ("itinerary", "places"), timeline_size))
         maps, charts = [], []
         for path, kind, roles, size in paths:

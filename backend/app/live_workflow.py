@@ -14,6 +14,7 @@ from .schemas import BudgetItem, Fact, TripRequest
 from .services.router import NineRouterClient
 from .services.public_api import PublicAPIClient
 from .services.places import PlacesService
+from .services.trip_venues import TripVenueService
 from .services.weather import WeatherService
 from .services.routing import RoutingService
 from .services.photos import PhotoService
@@ -84,10 +85,13 @@ class LiveTravelBookWorkflow(TravelBookWorkflow):
                 if trip is not None and trip.start_date is not None and not journey_questions(trip) and not user_feedback:
                     request=trip;plan=[Fact(value='Use the supplied validated trip request',source='user:trip_request',confidence=1)]
                 else:
+                    partial_request = None
                     while True:
-                        normalized=await agent.normalize(prompt,project_id=pid,on_attempt=agent.model_attempt(pid),confirmed_request=trip)
+                        normalized=await agent.normalize(prompt,project_id=pid,on_attempt=agent.model_attempt(pid),confirmed_request=trip,
+                            partial_request=partial_request)
                         if normalized.status=='ready':
                             request=normalized.trip_request;plan=normalized.plan;break
+                        partial_request=normalized.partial_request
                         answer=interrupt({'kind':'trip_clarification','node':'pm',
                             'questions':[question.model_dump(mode='json') for question in normalized.questions]})
                         if not isinstance(answer,dict) or not str(answer.get('answer','')).strip():
@@ -127,6 +131,7 @@ class LiveTravelBookWorkflow(TravelBookWorkflow):
                 planned=await agent.plan(context_trip,state['places'],project_id=pid,on_event=event,on_attempt=agent.model_attempt(pid))
                 if planned.missing_days or len(planned.itinerary)!=trip.days.value:
                     raise ValueError('Insufficient real places or feasible visits for all requested days; refine the request or research')
+                planned.warnings.extend(await TripVenueService(settings,public).enrich(context_trip,planned.itinerary,state['places'],on_event=event))
                 return self._export(state,node,{'itinerary':planned.itinerary,'planner_warnings':planned.warnings},
                     [('itinerary.json',planned.itinerary,'itinerary'),('planner_report.json',planned,'itinerary')])
             if node=='budget':

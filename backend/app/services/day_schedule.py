@@ -19,13 +19,13 @@ def journey_questions(trip):
         return []
     if trip.transport_times_flexible and trip.transport_times_flexible.value:
         return []
-    missing = [label for name, label in (
-        ('outbound_departure_at', 'ngày/giờ rời nơi khởi hành'),
-        ('destination_arrival_at', 'ngày/giờ đến điểm du lịch'),
-        ('destination_departure_at', 'ngày/giờ rời điểm du lịch'),
-        ('return_arrival_at', 'ngày/giờ về đến nơi khởi hành')) if getattr(trip, name) is None]
-    return ['Bạn cho biết phương tiện và ' + ', '.join(missing) +
-            '? Nếu chưa chốt vé, bạn có thể yêu cầu dùng giờ dự kiến để lập lịch tạm.'] if missing else []
+    missing = []
+    if trip.destination_arrival_at is None:
+        missing.append('giờ đến '+trip.destination.value+' ngày đầu')
+    if trip.destination_departure_at is None:
+        missing.append('giờ về (rời '+trip.destination.value+') ngày cuối')
+    return ['Bạn cho biết ' + ' và '.join(missing) +
+            '? Chỉ cần trả lời giờ, ví dụ: đến 10:00, về 18:00. Nếu chưa chốt, có thể dùng lịch tạm.'] if missing else []
 
 
 def slot(kind, title, start, end, *, source=POLICY, confidence=.5):

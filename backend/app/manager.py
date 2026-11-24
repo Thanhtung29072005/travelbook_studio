@@ -11,6 +11,7 @@ from .checkpointer import SQLiteCheckpointer
 from .schemas import Artifact, TripRequest, Place, DayPlan, Budget, BudgetItem, BudgetSavingsPlan, Photo, Fact, Review, ContentDocument, WeatherReport
 from .task_plan import build_tasks
 from .workspace import WorkspaceStore
+from .services.telegram import TelegramNotifications
 
 class WorkflowManager:
     def __init__(self, db, workflow=None):
@@ -21,6 +22,8 @@ class WorkflowManager:
         self.checkpointer = SQLiteCheckpointer(db)
         self.graph = workflow._build(checkpointer=self.checkpointer)
         self.running, self.stops, self.loop = {}, {}, None
+        self.notifications = TelegramNotifications(db, self.workflow.settings)
+        self.workflow.notifications = self.notifications
 
     def set_loop(self, loop): self.loop = loop
 
@@ -222,6 +225,7 @@ class WorkflowManager:
                     self.db.update_project(project_id, status="completed", stage="completed", progress=100, pause_requested=False,
                         state=values, final_pdf=pdf.path if hasattr(pdf,"path") else pdf.get("path") if isinstance(pdf,dict) else None)
                     self.db.add_event(project_id, "system", "workflow_completed", "Đã tiếp tục đến PDF", self.checkpoint_info(project_id))
+                    self.notifications.project_completed(project_id, values)
                 else:
                     raise RuntimeError("Graph ended without completion or pause/approval")
             await asyncio.to_thread(execute)

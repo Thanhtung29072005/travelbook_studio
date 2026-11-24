@@ -24,7 +24,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import (
-    Flowable, Image, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle,
+    Flowable, Image, KeepTogether, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle,
 )
 from reportlab.platypus.tableofcontents import TableOfContents
 
@@ -161,7 +161,9 @@ class LayoutService:
                                            textColor=colors.white),
             "place": ParagraphStyle("Place", fontName=self.bold, fontSize=10.5, leading=15,
                                     textColor=INK, spaceAfter=4),
-            "time": ParagraphStyle("Time", fontName=self.bold, fontSize=10, leading=15, textColor=TEAL),
+            "time": ParagraphStyle("Time", fontName=self.bold, fontSize=10.5, leading=15, textColor=TEAL),
+            "schedule_detail": ParagraphStyle("ScheduleDetail",fontName=self.font,fontSize=9,leading=13,
+                                               textColor=INK,spaceAfter=4,splitLongWords=True),
             "source": ParagraphStyle("Source", fontName=self.font, fontSize=7, leading=10,
                                      textColor=colors.HexColor("#77847C"), spaceAfter=4, splitLongWords=True),
             "metric": ParagraphStyle("Metric", fontName=self.bold, fontSize=15, leading=21, textColor=INK),
@@ -245,8 +247,12 @@ class LayoutService:
             details.append(f"Di chuyển {stop.travel_minutes.value} phút")
         if stop.distance_km is not None:
             details.append(f"{stop.distance_km.value:.1f} km".replace(".", ","))
-        card = Table([[self._p(f"{stop.arrival.value:%H:%M}\n{stop.departure.value:%H:%M}", "time"),
-                       [self._p(place.name.value, "place"), self._p("  /  ".join(details), "small")]]],
+        return self._schedule_card(stop.arrival.value,stop.departure.value,place.name.value,
+            [self._p("  /  ".join(details),'schedule_detail')] if details else [])
+
+    def _schedule_card(self,start,end,title,details):
+        card = Table([[self._p(f"{start:%H:%M}\n{end:%H:%M}", "time"),
+                       [self._p(title, "place"), *details]]],
                      colWidths=[82, self.width-82], hAlign="LEFT", splitInRow=1)
         card.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (0, 0), PAPER), ("BACKGROUND", (1, 0), (1, 0), colors.white),
@@ -255,16 +261,48 @@ class LayoutService:
             ("LEFTPADDING", (0, 0), (-1, -1), 12), ("RIGHTPADDING", (0, 0), (-1, -1), 12),
             ("TOPPADDING", (0, 0), (-1, -1), 9), ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
         ]))
-        return card
+        return KeepTogether([card])
 
     def _activity_card(self, activity):
-        card = Table([[self._p(f'{activity.start.value:%H:%M}\n{activity.end.value:%H:%M}', 'time'),
-                       self._p(activity.title.value, 'small')]],
-                     colWidths=[82, self.width-82], hAlign='LEFT', splitInRow=1)
-        card.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),PAPER),
-            ('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),12),
-            ('TOPPADDING',(0,0),(-1,-1),8),('BOTTOMPADDING',(0,0),(-1,-1),8)]))
-        return card
+        details=[]
+        if activity.venue:
+            venue=activity.venue
+            if venue.address:
+                details.append(self._p(venue.address.value,'schedule_detail'))
+            target=escape(str(venue.source_url.value),{'"':'&quot;'})
+            details.append(_Paragraph(f'<link href="{target}" color="#2D7465">Xem vị trí và nguồn bản đồ</link>',self.styles['schedule_detail']))
+            if activity.venue_transfer_minutes:
+                details.append(self._p(f'Khung giờ gồm khoảng {activity.venue_transfer_minutes.value} phút đi bộ hai chiều và thời gian ăn; di chuyển là ước tính.','schedule_detail'))
+        return self._schedule_card(activity.start.value,activity.end.value,activity.title.value,details)
+
+    def _timeline_images(self,path,max_height=620):
+        """Enlarge the original chart at full page width; split only between rows."""
+        with PILImage.open(path) as original:
+            image=original.convert('RGB')
+            metadata=json.loads(original.info.get('Data','{}'))
+        width,height=image.size
+        limit=max(1,int(max_height*width/self.width))
+        breaks=sorted({int(value) for value in metadata.get('row_breaks_px',[]) if isinstance(value,(float,int)) and 0<value<height})
+        day_breaks=sorted({int(value) for value in metadata.get('day_breaks_px',[]) if isinstance(value,(float,int)) and 0<value<height})
+        start=0
+        images=[]
+        while start<height:
+            end=min(height,start+limit)
+            if end<height:
+                legal=[value for value in breaks if start+100<value<=end]
+                by_day=[value for value in day_breaks if start+limit*.45<value<=end]
+                if by_day:
+                    end=max(by_day)
+                elif legal:
+                    end=max(legal)
+            buffer=BytesIO()
+            image.crop((0,start,width,end)).save(buffer,format='PNG')
+            buffer.seek(0)
+            part=_Image(buffer,width=self.width,height=(end-start)*self.width/width,hAlign='CENTER')
+            part.asset_path=str(path)
+            images.append(part)
+            start=end
+        return images
 
     @staticmethod
     def _background(canvas, doc):
@@ -448,6 +486,10 @@ class LayoutService:
                     from .day_schedule import local_stamp
                     value = local_stamp(item).strftime('%H:%M - %d/%m/%Y') if name.endswith('_at') else item.value
                     rows.append([label,value])
+            suggested_hotel=next((item.venue for day in days for item in day.activities if item.kind=='hotel' and item.venue),None)
+            if suggested_hotel and not trip.hotel_name:
+                rows.append(['Nơi ở đề xuất',suggested_hotel.name.value+(' — '+suggested_hotel.address.value if suggested_hotel.address else '')])
+                rows.append(['Tình trạng lưu trú','Chưa đặt phòng; giá và phòng trống cần xác nhận. Chi phí lưu trú trong dự toán vẫn là ước tính.'])
             if trip.transport_times_flexible and trip.transport_times_flexible.value:
                 rows.append(['Giờ chuyến đi','Chưa chốt vé; lịch tạm cần điều chỉnh theo giờ đến/về thực tế'])
             rows += [["Ngân sách cả nhóm", f"{_money(budget.limit.value)} {budget.currency.value}"],
@@ -510,7 +552,9 @@ class LayoutService:
             story.append(self._p("Lịch trình trong ngày", "subheading"))
             entries = [(stop.arrival.value, 0, stop) for stop in day.stops]
             entries += [(activity.start.value, 1, activity) for activity in day.activities]
-            if day.activities:
+            if any(item.venue for item in day.activities):
+                story.append(self._p('Nhà hàng/nơi ở dưới đây là đề xuất từ dữ liệu bản đồ, chưa xác nhận giá, giờ hoạt động thực tế hoặc chỗ trống. Chi phí ăn/lưu trú vẫn là khoản dự trù trong ngân sách.','small'))
+            elif day.activities:
                 story.append(self._p('Giờ ăn, nghỉ, khách sạn và di chuyển là khung dự kiến; chưa xác nhận đặt chỗ.', 'small'))
             for _, kind, item in sorted(entries,key=lambda row:(row[0],row[1])):
                 story += [self._activity_card(item) if kind else self._stop_card(item,indexed[item.place_id]), Spacer(1,6)]
@@ -568,10 +612,14 @@ class LayoutService:
         chart_titles = {"budget": "Ngân sách dự kiến", "weather": "Thời tiết", "timeline": "Timeline toàn chuyến"}
         numeric_weather = weather is None or any(any((point.temperature_min, point.temperature_max, point.rain_probability)) for point in weather.daily)
         for key in ("budget", "weather", "timeline"):
-            if key == "timeline" and not numeric_weather:
-                story.append(Spacer(1, 24))
-            else:
-                story.append(PageBreak())
+            if key == "timeline":
+                story += [PageBreak(),self._heading(chart_titles[key],key)]
+                for index,image in enumerate(self._timeline_images(charts[key])):
+                    if index:
+                        story += [PageBreak(),self._p('Timeline toàn chuyến (tiếp)','subheading')]
+                    story.append(image)
+                continue
+            story.append(PageBreak())
             story.append(self._heading(chart_titles[key], key))
             if key == "budget":
                 balance = budget.limit.value-budget.total.value

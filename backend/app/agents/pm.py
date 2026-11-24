@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from datetime import date as Date
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, time
 from hashlib import sha256
 import json
+import re
 from typing import Generic, Literal, TypeVar
 import unicodedata
 from uuid import uuid4
@@ -41,6 +42,8 @@ class TripDraft(Schema):
     outbound_departure_at: Extracted[datetime] | None = None
     destination_arrival_at: Extracted[datetime] | None = None
     destination_departure_at: Extracted[datetime] | None = None
+    destination_arrival_time: Extracted[time] | None = None
+    destination_departure_time: Extracted[time] | None = None
     return_arrival_at: Extracted[datetime] | None = None
     transport_mode: Extracted[Text] | None = None
     transport_times_flexible: Extracted[bool] | None = None
@@ -71,6 +74,7 @@ class PMResult(Schema):
     model: Text
     cache_hit: bool
     usage: dict[str, object] = Field(default_factory=dict)
+    partial_request: dict[str, object] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def check_status(self):
@@ -83,6 +87,29 @@ class PMResult(Schema):
 
 def _normalized(text):
     return " ".join(unicodedata.normalize("NFC", text).casefold().split())
+
+
+def _short_destination_times(prompt):
+    """Recognize the suggested short answer directly, without model reinterpretation."""
+    answer = prompt.rsplit('Additional user answer:\n',1)[-1]
+    result = {}
+    pattern = r'(?P<label>giờ\s+đến|giờ\s+về|đến|về|rời)\s*(?:lúc\s*)?[:=]?\s*(?P<hour>\d{1,2})(?:\s*:\s*(?P<minute>\d{2})|\s*(?:h|giờ)(?:\s*(?P<hminute>\d{1,2})(?!\d))?)(?:\s*(?P<period>sáng|chiều|tối|trưa))?'
+    for match in re.finditer(pattern,answer,re.IGNORECASE):
+        if re.search(r'về\s*$',answer[max(0,match.start()-6):match.start()],re.IGNORECASE):
+            continue
+        # An explicit adjacent date belongs to the datetime extractor, not the default day.
+        if re.match(r'\s*(?:ngày\s*)?\d{1,2}[/-]\d{1,2}',answer[match.end():]) or re.search(
+                r'(?:ngày\s*)?\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?\s*$',answer[max(0,match.start()-30):match.start()]):
+            continue
+        hour, minute = int(match['hour']),int(match['minute'] or match['hminute'] or 0)
+        period = (match['period'] or '').casefold()
+        if (period in {'chiều','tối'} and 1<=hour<12) or (period=='trưa' and 1<=hour<=6):
+            hour += 12
+        if hour>23 or minute>59:
+            continue
+        name = 'destination_arrival_time' if 'đến' in match['label'].casefold() else 'destination_departure_time'
+        result[name] = Extracted[time](value=time(hour,minute),evidence=match.group(),confidence=1)
+    return result
 
 
 class PMAgent(BaseAgent):
@@ -103,19 +130,28 @@ Tên địa điểm giữ cách gọi của người dùng; không tự đổi s
 Ngày ISO YYYY-MM-DD; tính ngày tương đối theo reference_date được cung cấp. Nếu mơ hồ thì hỏi lại.
 questions chỉ chứa câu hỏi cần thiết bằng tiếng Việt. Nếu chưa có ngày khởi hành cụ thể,
 hỏi ngày/tháng/năm để có thể lập lịch theo ngày và tra cứu thời tiết. Không tự lấy ngày hôm nay thay thế.
-Trích ngày/giờ rời nơi khởi hành (outbound_departure_at), đến điểm du lịch (destination_arrival_at),
-rời điểm du lịch (destination_departure_at), về nơi khởi hành (return_arrival_at), phương tiện và khách sạn nếu có.
+Chỉ cần HAI mốc cho lịch trình: đến điểm du lịch và rời điểm du lịch để về.
+'Giờ về' trong câu trả lời ngắn là giờ RỜI ĐIỂM DU LỊCH ngày cuối, không phải giờ về đến Hà Nội/nơi xuất phát.
+Nếu người dùng chỉ nói giờ ('đến 10h, về 18h'), trích destination_arrival_time=10:00,
+destination_departure_time=18:00; backend tự ghép ngày đầu/ngày cuối đã biết. Không hỏi lại ngày này.
+Chỉ dùng destination_arrival_at/destination_departure_at nếu người dùng nói cả ngày và giờ khác mặc định.
+Không yêu cầu outbound_departure_at, return_arrival_at hoặc phương tiện; hai giờ tại nơi xuất phát để null.
+Không hỏi giờ về đến Hà Nội, không đối chiếu giờ chuyến đi-về chưa cung cấp.
+Giữ thông tin đã trả lời, câu trả lời mới nhất thay cho giờ cũ nếu người dùng sửa.
+questions KHÔNG chứa câu hỏi về giờ/chuyến đi/phương tiện; backend tự hỏi ngắn gọn đúng mốc còn thiếu.
 Giờ ISO có ngày, múi giờ +07:00 cho Việt Nam. Không tự bịa giờ vé. Nếu người dùng nói chưa chốt vé
 và đồng ý dùng lịch tạm/giờ dự kiến, đặt transport_times_flexible=true, giữ giờ chưa biết là null.
 Không thêm source; backend sẽ gắn nguồn từ hash yêu cầu và kiểm tra evidence trước khi tạo TripRequest."""
 
     async def normalize(self, prompt: str, *, project_id="draft", reference_date: Date | None = None,
-                        models: list[str] | None = None, on_attempt=None, confirmed_request: TripRequest | None = None) -> PMResult:
+                        models: list[str] | None = None, on_attempt=None, confirmed_request: TripRequest | None = None,
+                        partial_request: dict | None = None) -> PMResult:
         self.validate_project_id(project_id)
         if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > 6000:
             raise ValueError("prompt must be non-blank and at most 6000 characters")
         reference_date = reference_date or datetime.now(timezone(timedelta(hours=7))).date()
         confirmed = TripRequest.model_validate(confirmed_request).model_dump(mode="json") if confirmed_request is not None else {}
+        confirmed = {**(partial_request or {}), **{key:value for key,value in confirmed.items() if value is not None}}
         context = prompt
         if confirmed:
             values = {}
@@ -126,7 +162,7 @@ Không thêm source; backend sẽ gắn nguồn từ hash yêu cầu và kiểm 
                     values[key] = [item["value"] for item in value]
                 else:
                     values[key] = value
-            context += "\nThông tin chuyến đi đã được người dùng xác nhận:\n" + json.dumps(values, ensure_ascii=False)
+            context += "\nThông tin chuyến đi đã được người dùng xác nhận:\n" + json.dumps(values, ensure_ascii=False, default=str)
         user_source = "user:sha256:" + sha256(context.encode("utf-8")).hexdigest()
         response = await self.router.chat_structured(
             system=self.SYSTEM, prompt=f"reference_date={reference_date.isoformat()} (UTC+07:00)\n\nYêu cầu:\n{context}",
@@ -145,17 +181,35 @@ Không thêm source; backend sẽ gắn nguồn từ hash yêu cầu và kiểm 
 
         fields = {name: fact(getattr(draft, name)) or confirmed.get(name) for name in (
             "destination", "days", "budget", "currency", "travelers", "start_date", "end_date", "departure",
-            "outbound_departure_at", "destination_arrival_at", "destination_departure_at", "return_arrival_at",
+            "destination_arrival_at", "destination_departure_at",
             "transport_mode", "transport_times_flexible", "hotel_name",
         )}
         for name in ("interests", "traveler_ages", "requirements"):
             fields[name] = [fact(value) for value in getattr(draft, name)] or confirmed.get(name, [])
+        # Origin timestamps are optional historical information, not planning requirements.
+        # Do not carry contradictory origin-flight guesses into the two destination boundaries.
+        fields['outbound_departure_at'] = None
+        fields['return_arrival_at'] = None
+        short_times = _short_destination_times(prompt)
+        for clock_name, stamp_name, last in (
+            ('destination_arrival_time','destination_arrival_at',False),
+            ('destination_departure_time','destination_departure_at',True)):
+            clock = short_times.get(clock_name) or getattr(draft,clock_name)
+            if clock is not None and fields['start_date'] is not None and fields['days'] is not None:
+                clock_fact = fact(clock)
+                first = fields['start_date']['value']
+                first = Date.fromisoformat(first) if isinstance(first,str) else first
+                day = first + timedelta(days=fields['days']['value']-1 if last else 0)
+                fields[stamp_name] = {**clock_fact,'value':datetime.combine(day,clock.value.replace(tzinfo=None),tzinfo=timezone(timedelta(hours=7)))}
         # Verify normalized geographic names still occur in their quoted evidence.
         for name in ("destination", "departure"):
             extracted = getattr(draft, name)
             if extracted is not None and _normalized(extracted.value) not in _normalized(extracted.evidence):
                 raise ValueError(f"{name} is not supported by its quoted evidence")
-        questions = list(draft.questions)
+        def journey_question(question):
+            plain = ''.join(c for c in unicodedata.normalize('NFD',question.casefold().replace('đ','d')) if not unicodedata.combining(c))
+            return bool(re.search(r'\bgio\b|\bchuyen bay\b|\bphuong tien\b|\bve may bay\b',plain))
+        questions = [question for question in draft.questions if not journey_question(question)]
         if draft.currency is not None:
             evidence = _normalized(draft.currency.evidence)
             aliases = {"VND": ("vnd", "vnđ", "đồng", "dong"), "USD": ("usd", "$", "đô la", "dollar"),
@@ -171,7 +225,7 @@ Không thêm source; backend sẽ gắn nguồn từ hash yêu cầu và kiểm 
         questions.extend(question for name, question in missing_questions.items() if fields[name] is None)
         if fields["budget"] is not None and draft.budget_scope == "unknown" and (not confirmed or draft.budget is not None):
             questions.append("Ngân sách là tổng cho cả nhóm hay tính cho mỗi người?")
-        if draft.budget_scope == "per_person" and fields["budget"] is not None and fields["travelers"] is not None:
+        if draft.budget_scope == "per_person" and draft.budget is not None and fields["budget"] is not None and fields["travelers"] is not None:
             amount, people = fields["budget"], fields["travelers"]
             fields["budget"] = {"value": amount["value"] * people["value"],
                                 "source": f"calculation:per_person*travelers; {amount['source']}; {people['source']}",
@@ -186,12 +240,15 @@ Không thêm source; backend sẽ gắn nguồn từ hash yêu cầu và kiểm 
             try:
                 request = TripRequest.model_validate(fields)
                 questions.extend(journey_questions(request))
-            except ValidationError:
-                questions.append("Ngày đi, ngày về, giờ các chuyến hoặc số ngày chưa khớp; bạn xác nhận lại giúp tôi?")
+            except ValidationError as error:
+                if any('Journey timestamps' in item['msg'] for item in error.errors()):
+                    questions.append('Giờ về (rời điểm du lịch) cần sau giờ đến. Bạn xác nhận lại hai giờ này giúp tôi?')
+                else:
+                    questions.append("Ngày đi, ngày về hoặc số ngày chưa khớp; bạn xác nhận lại giúp tôi?")
         questions = list(dict.fromkeys(questions))
         common = {"model": response.model, "cache_hit": response.cache_hit, "usage": response.usage}
         if questions:
-            return PMResult(status="needs_clarification", trip_request=None,
+            return PMResult(status="needs_clarification", trip_request=None, partial_request=fields,
                             questions=[Fact[str](value=question, source="pm:clarification; " + user_source, confidence=1)
                                        for question in questions], **common)
         confidence = min(request.destination.confidence, request.days.confidence, request.budget.confidence,

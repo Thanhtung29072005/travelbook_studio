@@ -153,6 +153,9 @@ class TravelBookWorkflow:
                     connection.execute("UPDATE tasks SET due_at=COALESCE(due_at,?) WHERE project_id=? AND id=?", (utcnow(), project_id, task_id))
                 self.db.add_event(project_id, agent, "node_completed", f"Hoàn tất {node}",
                                   {"node": node, "artifact_ids": [artifact.id for artifact in result.get("artifacts", [])]})
+                notifications = getattr(self,'notifications',None)
+                if notifications is not None and not self.fixture_mode:
+                    notifications.agent_completed(state,node,result)
                 return result
             except Exception as error:
                 self.db.set_task_status(project_id, task_id, "blocked")

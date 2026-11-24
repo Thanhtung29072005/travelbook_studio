@@ -1,5 +1,7 @@
 # TravelBook Studio
 
+Thông báo từng agent và gửi PDF qua Telegram: [scripts/TELEGRAM.md](scripts/TELEGRAM.md).
+
 Nguồn địa điểm dự phòng Wikidata và kiểm tra thực tế Nha Trang: [scripts/INDEPENDENT_PLACE_FALLBACK.md](scripts/INDEPENDENT_PLACE_FALLBACK.md).
 
 Luồng UI mặc định đã nối agent thật. Sau cập nhật hãy khởi động lại backend và tạo dự án mới; xem [scripts/LIVE_WORKFLOW.md](scripts/LIVE_WORKFLOW.md) về dữ liệu, cấu hình và giới hạn kiểm thử.

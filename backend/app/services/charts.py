@@ -149,7 +149,8 @@ def render_timeline_chart(days, places, destination: str | Path, *, size=(1400, 
     data = []
     activity_data = []
     with plot_canvas(size) as (fig, ax):
-        fig.subplots_adjust(left=0.35)
+        fig.subplots_adjust(left=0.44,right=.96,top=1-110/size[1],bottom=105/size[1])
+        label_font=min(18*size[0]/1400,max(8,(size[1]-190)/max(1,len(rows))/5))
         labels, extents = [], []
         for index, (day, stop, is_activity) in enumerate(rows):
             first,last = (stop.start,stop.end) if is_activity else (stop.arrival,stop.departure)
@@ -160,8 +161,14 @@ def render_timeline_chart(days, places, destination: str | Path, *, size=(1400, 
             ax.barh(index, end - start, left=start, height=0.55, color='#8E9BA8' if is_activity else COLORS["teal"])
             if travel:
                 ax.barh(index, travel, left=start - travel, height=0.3, color=COLORS["orange"], alpha=0.6)
-            ax.text(end + 0.08, index, f"{first.value:%H:%M}–{last.value:%H:%M}", fontsize=8, va="center")
-            labels.append("\n".join(textwrap.wrap(f"N{day.day_number} · {name.value}", 35)))
+            ax.text(end + 0.08, index, f"{first.value:%H:%M}–{last.value:%H:%M}", fontsize=min(label_font,16), va="center")
+            label=name.value
+            if is_activity and stop.kind=='free_time':
+                label='Tự do / nghỉ ngơi'
+            elif is_activity and stop.kind=='hotel' and stop.venue:
+                action='Nhận hành lý / trả phòng' if 'trả phòng' in label else 'Gửi hành lý / nhận phòng' if 'Gửi hành lý' in label else 'Nghỉ tối'
+                label=action+' · '+stop.venue.name.value
+            labels.append("\n".join(textwrap.wrap(f"N{day.day_number} · {label}", 42)))
             facts.extend([first,last,name])
             if not is_activity and stop.travel_minutes is not None:
                 facts.append(stop.travel_minutes)
@@ -173,16 +180,24 @@ def render_timeline_chart(days, places, destination: str | Path, *, size=(1400, 
                 data.append({"day_number": day.day_number, "place_id": stop.place_id,
                              "start_hour": start, "end_hour": end, "travel_hours": travel})
         ax.set_yticks(range(len(rows)), labels)
+        ax.margins(y=.01)
+        ax.tick_params(axis='y',labelsize=label_font)
+        ax.tick_params(axis='x',labelsize=min(label_font,16))
         ax.invert_yaxis()
         ax.set_xlim(max(0, min(extents) - 0.5), min(24, max(extents) + 2))
         ax.xaxis.set_major_formatter(FuncFormatter(_hour_label))
-        ax.set_xlabel("Giờ địa phương tại điểm đến")
+        ax.set_xlabel("Giờ địa phương tại điểm đến",fontsize=min(label_font,16))
         ax.grid(axis="x", alpha=0.15)
         ax.set_axisbelow(True)
-        ax.set_title("Timeline lịch trình 3 ngày" if len(days) == 3 else "Timeline lịch trình", fontsize=17, pad=25)
-        ax.legend(handles=[Patch(color=COLORS["teal"], label="Tham quan"),
+        fig.text(.44,1-28/size[1],'Timeline toàn chuyến',fontsize=20*size[0]/1400,color=COLORS['ink'],weight='bold')
+        fig.legend(handles=[Patch(color=COLORS["teal"], label="Tham quan"),
                            Patch(color='#8E9BA8', label='Ăn, nghỉ và lưu trú'),
-                           Patch(color=COLORS["orange"], alpha=0.6, label="Di chuyển dự kiến")], loc="lower right")
+                           Patch(color=COLORS["orange"], alpha=0.6, label="Di chuyển dự kiến")], loc="upper right",bbox_to_anchor=(.97,1-45/size[1]),ncol=3,fontsize=13*size[0]/1400)
         sources, confidence = provenance(facts)
-        footer(fig, "Khung giờ tham quan và thời gian di chuyển dự kiến của từng ngày.")
-        return save_png(fig, destination, size, sources=sources, confidence=confidence, data={"stops": data,'activities':activity_data})
+        fig.text(.04,15/size[1],'Khung giờ tham quan và thời gian di chuyển dự kiến của từng ngày.',fontsize=10,color=COLORS['ink'])
+        fig.canvas.draw()
+        centers=[size[1]-ax.transData.transform((0,index))[1] for index in range(len(rows))]
+        row_breaks=[round((a+b)/2) for a,b in zip(centers,centers[1:])]
+        day_breaks=[row_breaks[index] for index,(a,b) in enumerate(zip(rows,rows[1:])) if a[0].day_number!=b[0].day_number]
+        return save_png(fig, destination, size, sources=sources, confidence=confidence,
+                        data={"stops": data,'activities':activity_data,'row_breaks_px':row_breaks,'day_breaks_px':day_breaks})
