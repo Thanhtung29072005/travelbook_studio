@@ -1,0 +1,48 @@
+# Credentials and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.codex/
+.agents/
+.aws/
+
+# Python environments and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# Frontend dependencies and build output
+node_modules/
+*.tsbuildinfo
+
+# Local databases, caches, and generated projects
+*.db
+*.db-*
+*.sqlite*
+/backend/data/*
+!/backend/data/artifacts/
+/backend/data/artifacts/*
+!/backend/data/artifacts/danang_3days/
+
+# Local references and verification output
+/reference/
+/reference-review/
+/tmp/
+/output/
+*.log
+
+# Editor and OS metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini

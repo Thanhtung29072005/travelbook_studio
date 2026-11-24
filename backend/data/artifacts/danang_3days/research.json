@@ -1,0 +1,266 @@
+[
+  {
+    "id": "my_khe",
+    "name": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+      "confidence": 0.3,
+      "value": "Bãi biển Mỹ Khê"
+    },
+    "latitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 16.0544
+    },
+    "longitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 108.247
+    },
+    "address": null,
+    "description": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+      "confidence": 1.0,
+      "value": "Địa điểm trong kịch bản demo; cần Researcher xác minh trước khi xuất cẩm nang thật."
+    },
+    "opening_hours": null,
+    "ticket_price": null,
+    "currency": null,
+    "visit_minutes": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+      "confidence": 0.5,
+      "value": 90
+    },
+    "age_notes": []
+  },
+  {
+    "id": "cham_museum",
+    "name": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+      "confidence": 0.3,
+      "value": "Bảo tàng Điêu khắc Chăm Đà Nẵng"
+    },
+    "latitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 16.0609
+    },
+    "longitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 108.2233
+    },
+    "address": null,
+    "description": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+      "confidence": 1.0,
+      "value": "Địa điểm trong kịch bản demo; cần Researcher xác minh trước khi xuất cẩm nang thật."
+    },
+    "opening_hours": null,
+    "ticket_price": null,
+    "currency": null,
+    "visit_minutes": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+      "confidence": 0.5,
+      "value": 90
+    },
+    "age_notes": []
+  },
+  {
+    "id": "dragon_bridge",
+    "name": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+      "confidence": 0.3,
+      "value": "Cầu Rồng"
+    },
+    "latitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 16.0611
+    },
+    "longitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 108.2275
+    },
+    "address": null,
+    "description": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+      "confidence": 1.0,
+      "value": "Địa điểm trong kịch bản demo; cần Researcher xác minh trước khi xuất cẩm nang thật."
+    },
+    "opening_hours": null,
+    "ticket_price": null,
+    "currency": null,
+    "visit_minutes": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+      "confidence": 0.5,
+      "value": 45
+    },
+    "age_notes": []
+  },
+  {
+    "id": "linh_ung",
+    "name": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+      "confidence": 0.3,
+      "value": "Chùa Linh Ứng, bán đảo Sơn Trà"
+    },
+    "latitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 16.1003
+    },
+    "longitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 108.2778
+    },
+    "address": null,
+    "description": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+      "confidence": 1.0,
+      "value": "Địa điểm trong kịch bản demo; cần Researcher xác minh trước khi xuất cẩm nang thật."
+    },
+    "opening_hours": null,
+    "ticket_price": null,
+    "currency": null,
+    "visit_minutes": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+      "confidence": 0.5,
+      "value": 90
+    },
+    "age_notes": []
+  },
+  {
+    "id": "son_tra_stop",
+    "name": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+      "confidence": 0.3,
+      "value": "Điểm ngắm cảnh giả lập trên tuyến Sơn Trà"
+    },
+    "latitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 16.108
+    },
+    "longitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 108.278
+    },
+    "address": null,
+    "description": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+      "confidence": 1.0,
+      "value": "Địa điểm trong kịch bản demo; cần Researcher xác minh trước khi xuất cẩm nang thật."
+    },
+    "opening_hours": null,
+    "ticket_price": null,
+    "currency": null,
+    "visit_minutes": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+      "confidence": 0.5,
+      "value": 60
+    },
+    "age_notes": []
+  },
+  {
+    "id": "han_market",
+    "name": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+      "confidence": 0.3,
+      "value": "Chợ Hàn"
+    },
+    "latitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 16.0675
+    },
+    "longitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 108.224
+    },
+    "address": null,
+    "description": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+      "confidence": 1.0,
+      "value": "Địa điểm trong kịch bản demo; cần Researcher xác minh trước khi xuất cẩm nang thật."
+    },
+    "opening_hours": null,
+    "ticket_price": null,
+    "currency": null,
+    "visit_minutes": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+      "confidence": 0.5,
+      "value": 90
+    },
+    "age_notes": []
+  },
+  {
+    "id": "marble_mountains",
+    "name": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+      "confidence": 0.3,
+      "value": "Danh thắng Ngũ Hành Sơn"
+    },
+    "latitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 16.0035
+    },
+    "longitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 108.2642
+    },
+    "address": null,
+    "description": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+      "confidence": 1.0,
+      "value": "Địa điểm trong kịch bản demo; cần Researcher xác minh trước khi xuất cẩm nang thật."
+    },
+    "opening_hours": null,
+    "ticket_price": null,
+    "currency": null,
+    "visit_minutes": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+      "confidence": 0.5,
+      "value": 120
+    },
+    "age_notes": []
+  },
+  {
+    "id": "non_nuoc",
+    "name": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+      "confidence": 0.3,
+      "value": "Bãi biển Non Nước"
+    },
+    "latitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 15.998
+    },
+    "longitude": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+      "confidence": 0.3,
+      "value": 108.276
+    },
+    "address": null,
+    "description": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+      "confidence": 1.0,
+      "value": "Địa điểm trong kịch bản demo; cần Researcher xác minh trước khi xuất cẩm nang thật."
+    },
+    "opening_hours": null,
+    "ticket_price": null,
+    "currency": null,
+    "visit_minutes": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+      "confidence": 0.5,
+      "value": 60
+    },
+    "age_notes": []
+  }
+]

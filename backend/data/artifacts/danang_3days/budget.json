@@ -1,0 +1,174 @@
+{
+  "currency": {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; đơn vị tiền quy ước trong demo",
+    "confidence": 1.0,
+    "value": "VND"
+  },
+  "limit": {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ngân sách giả định cho một người lớn",
+    "confidence": 1.0,
+    "value": "5000000"
+  },
+  "items": [
+    {
+      "id": "hotel",
+      "category": "accommodation",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Một người lớn, một phòng × 2 đêm × 600.000 VND"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "1200000"
+      },
+      "price_kind": "estimated",
+      "day_number": null
+    },
+    {
+      "id": "food1",
+      "category": "food",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Ăn uống ngày 1 cho một người lớn"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "300000"
+      },
+      "price_kind": "estimated",
+      "day_number": 1
+    },
+    {
+      "id": "food2",
+      "category": "food",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Ăn uống ngày 2 cho một người lớn"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "300000"
+      },
+      "price_kind": "estimated",
+      "day_number": 2
+    },
+    {
+      "id": "food3",
+      "category": "food",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Ăn uống ngày 3 cho một người lớn"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "300000"
+      },
+      "price_kind": "estimated",
+      "day_number": 3
+    },
+    {
+      "id": "transport1",
+      "category": "transport",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Tổng di chuyển nội thành ngày 1"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "200000"
+      },
+      "price_kind": "estimated",
+      "day_number": 1
+    },
+    {
+      "id": "transport2",
+      "category": "transport",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Tổng di chuyển ngày 2"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "400000"
+      },
+      "price_kind": "estimated",
+      "day_number": 2
+    },
+    {
+      "id": "transport3",
+      "category": "transport",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Tổng di chuyển ngày 3"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "300000"
+      },
+      "price_kind": "estimated",
+      "day_number": 3
+    },
+    {
+      "id": "tickets1",
+      "category": "tickets",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Khoản dự trù vé ngày 1, không phải báo giá điểm tham quan"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "100000"
+      },
+      "price_kind": "estimated",
+      "day_number": 1
+    },
+    {
+      "id": "tickets3",
+      "category": "tickets",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Khoản dự trù vé ngày 3, không phải báo giá điểm tham quan"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "100000"
+      },
+      "price_kind": "estimated",
+      "day_number": 3
+    },
+    {
+      "id": "reserve",
+      "category": "contingency",
+      "description": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+        "confidence": 1.0,
+        "value": "Quỹ dự phòng cho toàn chuyến"
+      },
+      "amount": {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "confidence": 0.3,
+        "value": "500000"
+      },
+      "price_kind": "estimated",
+      "day_number": null
+    }
+  ]
+}

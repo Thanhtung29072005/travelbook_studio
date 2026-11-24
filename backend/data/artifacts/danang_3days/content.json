@@ -1,0 +1,42 @@
+[
+  {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; brief giả định của fixture",
+    "confidence": 1.0,
+    "value": "Cẩm nang mẫu Đà Nẵng 3 ngày dành cho một người lớn, ngân sách 5.000.000 VND."
+  },
+  {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; biên tập từ itinerary.json ngày 1",
+    "confidence": 0.8,
+    "value": "Ngày 1: mở đầu với Mỹ Khê, tiếp tục tới Bảo tàng Điêu khắc Chăm và kết thúc tại Cầu Rồng."
+  },
+  {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; biên tập từ itinerary.json ngày 2",
+    "confidence": 0.8,
+    "value": "Ngày 2: lịch demo kết hợp chùa Linh Ứng, một điểm ngắm cảnh giả lập và chợ Hàn."
+  },
+  {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; biên tập từ itinerary.json ngày 3",
+    "confidence": 0.8,
+    "value": "Ngày 3: dành buổi sáng cho Ngũ Hành Sơn và Non Nước; buổi chiều chủ động sắp xếp rời thành phố."
+  },
+  {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; gợi ý biên tập demo, không phải kết quả tìm nhà hàng",
+    "confidence": 0.3,
+    "value": "Có thể dành các bữa ăn để thử mì Quảng, bánh tráng cuốn thịt heo hoặc hải sản theo sở thích."
+  },
+  {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi dự toán demo",
+    "confidence": 1.0,
+    "value": "Ngân sách chỉ bao gồm khoản tại điểm đến; chưa tính vé máy bay hoặc tàu xe đến và rời Đà Nẵng, mua sắm cá nhân."
+  },
+  {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; trạng thái dữ liệu fixture",
+    "confidence": 1.0,
+    "value": "Chưa chọn ngày đi nên không có dự báo thời tiết. Giờ mở cửa và giá vé đều chưa xác minh."
+  },
+  {
+    "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; trạng thái nguồn ảnh fixture",
+    "confidence": 1.0,
+    "value": "Mọi ảnh trong photos.json là placeholder, chưa có tác giả hoặc giấy phép được xác minh; không tải hoặc đưa vào PDF thật."
+  }
+]

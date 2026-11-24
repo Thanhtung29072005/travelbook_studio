@@ -1,0 +1,250 @@
+[
+  {
+    "id": "photo_my_khe",
+    "place_id": "my_khe",
+    "url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/my_khe.jpg"
+    },
+    "author": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+      "confidence": 0.0,
+      "value": "PLACEHOLDER — chưa xác minh tác giả"
+    },
+    "license": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+      "confidence": 0.0,
+      "value": "UNVERIFIED — chưa có quyền sử dụng ảnh"
+    },
+    "source_url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/my_khe"
+    },
+    "caption": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo",
+      "confidence": 1.0,
+      "value": "Ảnh minh họa cần tìm cho Bãi biển Mỹ Khê"
+    },
+    "license_url": null,
+    "local_path": null
+  },
+  {
+    "id": "photo_cham_museum",
+    "place_id": "cham_museum",
+    "url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/cham_museum.jpg"
+    },
+    "author": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+      "confidence": 0.0,
+      "value": "PLACEHOLDER — chưa xác minh tác giả"
+    },
+    "license": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+      "confidence": 0.0,
+      "value": "UNVERIFIED — chưa có quyền sử dụng ảnh"
+    },
+    "source_url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/cham_museum"
+    },
+    "caption": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo",
+      "confidence": 1.0,
+      "value": "Ảnh minh họa cần tìm cho Bảo tàng Điêu khắc Chăm Đà Nẵng"
+    },
+    "license_url": null,
+    "local_path": null
+  },
+  {
+    "id": "photo_dragon_bridge",
+    "place_id": "dragon_bridge",
+    "url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/dragon_bridge.jpg"
+    },
+    "author": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+      "confidence": 0.0,
+      "value": "PLACEHOLDER — chưa xác minh tác giả"
+    },
+    "license": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+      "confidence": 0.0,
+      "value": "UNVERIFIED — chưa có quyền sử dụng ảnh"
+    },
+    "source_url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/dragon_bridge"
+    },
+    "caption": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo",
+      "confidence": 1.0,
+      "value": "Ảnh minh họa cần tìm cho Cầu Rồng"
+    },
+    "license_url": null,
+    "local_path": null
+  },
+  {
+    "id": "photo_linh_ung",
+    "place_id": "linh_ung",
+    "url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/linh_ung.jpg"
+    },
+    "author": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+      "confidence": 0.0,
+      "value": "PLACEHOLDER — chưa xác minh tác giả"
+    },
+    "license": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+      "confidence": 0.0,
+      "value": "UNVERIFIED — chưa có quyền sử dụng ảnh"
+    },
+    "source_url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/linh_ung"
+    },
+    "caption": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo",
+      "confidence": 1.0,
+      "value": "Ảnh minh họa cần tìm cho Chùa Linh Ứng, bán đảo Sơn Trà"
+    },
+    "license_url": null,
+    "local_path": null
+  },
+  {
+    "id": "photo_son_tra_stop",
+    "place_id": "son_tra_stop",
+    "url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/son_tra_stop.jpg"
+    },
+    "author": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+      "confidence": 0.0,
+      "value": "PLACEHOLDER — chưa xác minh tác giả"
+    },
+    "license": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+      "confidence": 0.0,
+      "value": "UNVERIFIED — chưa có quyền sử dụng ảnh"
+    },
+    "source_url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/son_tra_stop"
+    },
+    "caption": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo",
+      "confidence": 1.0,
+      "value": "Ảnh minh họa cần tìm cho Điểm ngắm cảnh giả lập trên tuyến Sơn Trà"
+    },
+    "license_url": null,
+    "local_path": null
+  },
+  {
+    "id": "photo_han_market",
+    "place_id": "han_market",
+    "url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/han_market.jpg"
+    },
+    "author": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+      "confidence": 0.0,
+      "value": "PLACEHOLDER — chưa xác minh tác giả"
+    },
+    "license": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+      "confidence": 0.0,
+      "value": "UNVERIFIED — chưa có quyền sử dụng ảnh"
+    },
+    "source_url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/han_market"
+    },
+    "caption": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo",
+      "confidence": 1.0,
+      "value": "Ảnh minh họa cần tìm cho Chợ Hàn"
+    },
+    "license_url": null,
+    "local_path": null
+  },
+  {
+    "id": "photo_marble_mountains",
+    "place_id": "marble_mountains",
+    "url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/marble_mountains.jpg"
+    },
+    "author": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+      "confidence": 0.0,
+      "value": "PLACEHOLDER — chưa xác minh tác giả"
+    },
+    "license": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+      "confidence": 0.0,
+      "value": "UNVERIFIED — chưa có quyền sử dụng ảnh"
+    },
+    "source_url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/marble_mountains"
+    },
+    "caption": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo",
+      "confidence": 1.0,
+      "value": "Ảnh minh họa cần tìm cho Danh thắng Ngũ Hành Sơn"
+    },
+    "license_url": null,
+    "local_path": null
+  },
+  {
+    "id": "photo_non_nuoc",
+    "place_id": "non_nuoc",
+    "url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/non_nuoc.jpg"
+    },
+    "author": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+      "confidence": 0.0,
+      "value": "PLACEHOLDER — chưa xác minh tác giả"
+    },
+    "license": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+      "confidence": 0.0,
+      "value": "UNVERIFIED — chưa có quyền sử dụng ảnh"
+    },
+    "source_url": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+      "confidence": 0.0,
+      "value": "https://example.invalid/danang/non_nuoc"
+    },
+    "caption": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo",
+      "confidence": 1.0,
+      "value": "Ảnh minh họa cần tìm cho Bãi biển Non Nước"
+    },
+    "license_url": null,
+    "local_path": null
+  }
+]

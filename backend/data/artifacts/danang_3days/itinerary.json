@@ -1,0 +1,267 @@
+[
+  {
+    "day_number": 1,
+    "date": null,
+    "title": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tiêu đề biên tập",
+      "confidence": 0.8,
+      "value": "Ngày 1 — Biển và trung tâm thành phố"
+    },
+    "stops": [
+      {
+        "place_id": "my_khe",
+        "arrival": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "07:00:00"
+        },
+        "departure": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "08:30:00"
+        },
+        "travel_minutes": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+          "confidence": 0.3,
+          "value": 0
+        },
+        "distance_km": null,
+        "notes": [
+          {
+            "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+            "confidence": 1.0,
+            "value": "Chưa xác minh giờ mở cửa; điều chỉnh sau khi có dữ liệu thực tế."
+          }
+        ]
+      },
+      {
+        "place_id": "cham_museum",
+        "arrival": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "09:15:00"
+        },
+        "departure": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "10:45:00"
+        },
+        "travel_minutes": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+          "confidence": 0.3,
+          "value": 30
+        },
+        "distance_km": null,
+        "notes": [
+          {
+            "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+            "confidence": 1.0,
+            "value": "Chưa xác minh giờ mở cửa; điều chỉnh sau khi có dữ liệu thực tế."
+          }
+        ]
+      },
+      {
+        "place_id": "dragon_bridge",
+        "arrival": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "16:00:00"
+        },
+        "departure": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "16:45:00"
+        },
+        "travel_minutes": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+          "confidence": 0.3,
+          "value": 15
+        },
+        "distance_km": null,
+        "notes": [
+          {
+            "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+            "confidence": 1.0,
+            "value": "Chưa xác minh giờ mở cửa; điều chỉnh sau khi có dữ liệu thực tế."
+          }
+        ]
+      }
+    ],
+    "weather": [],
+    "tips": [
+      {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; quy ước lịch trình demo",
+        "confidence": 1.0,
+        "value": "Khoảng trống buổi trưa dành cho ăn uống và nghỉ ngơi."
+      }
+    ]
+  },
+  {
+    "day_number": 2,
+    "date": null,
+    "title": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tiêu đề biên tập",
+      "confidence": 0.8,
+      "value": "Ngày 2 — Sơn Trà và chợ Hàn"
+    },
+    "stops": [
+      {
+        "place_id": "linh_ung",
+        "arrival": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "08:00:00"
+        },
+        "departure": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "09:30:00"
+        },
+        "travel_minutes": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+          "confidence": 0.3,
+          "value": 0
+        },
+        "distance_km": null,
+        "notes": [
+          {
+            "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+            "confidence": 1.0,
+            "value": "Chưa xác minh giờ mở cửa; điều chỉnh sau khi có dữ liệu thực tế."
+          }
+        ]
+      },
+      {
+        "place_id": "son_tra_stop",
+        "arrival": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "10:00:00"
+        },
+        "departure": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "11:00:00"
+        },
+        "travel_minutes": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+          "confidence": 0.3,
+          "value": 20
+        },
+        "distance_km": null,
+        "notes": [
+          {
+            "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+            "confidence": 1.0,
+            "value": "Chưa xác minh giờ mở cửa; điều chỉnh sau khi có dữ liệu thực tế."
+          }
+        ]
+      },
+      {
+        "place_id": "han_market",
+        "arrival": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "15:00:00"
+        },
+        "departure": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "16:30:00"
+        },
+        "travel_minutes": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+          "confidence": 0.3,
+          "value": 45
+        },
+        "distance_km": null,
+        "notes": [
+          {
+            "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+            "confidence": 1.0,
+            "value": "Chưa xác minh giờ mở cửa; điều chỉnh sau khi có dữ liệu thực tế."
+          }
+        ]
+      }
+    ],
+    "weather": [],
+    "tips": [
+      {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+        "confidence": 1.0,
+        "value": "Điểm ngắm cảnh là điểm giả lập; thay bằng địa điểm đã xác minh trước khi sử dụng."
+      }
+    ]
+  },
+  {
+    "day_number": 3,
+    "date": null,
+    "title": {
+      "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tiêu đề biên tập",
+      "confidence": 0.8,
+      "value": "Ngày 3 — Ngũ Hành Sơn và Non Nước"
+    },
+    "stops": [
+      {
+        "place_id": "marble_mountains",
+        "arrival": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "08:00:00"
+        },
+        "departure": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "10:00:00"
+        },
+        "travel_minutes": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+          "confidence": 0.3,
+          "value": 0
+        },
+        "distance_km": null,
+        "notes": [
+          {
+            "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+            "confidence": 1.0,
+            "value": "Chưa xác minh giờ mở cửa; điều chỉnh sau khi có dữ liệu thực tế."
+          }
+        ]
+      },
+      {
+        "place_id": "non_nuoc",
+        "arrival": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "10:30:00"
+        },
+        "departure": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+          "confidence": 0.6,
+          "value": "11:30:00"
+        },
+        "travel_minutes": {
+          "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+          "confidence": 0.3,
+          "value": 20
+        },
+        "distance_km": null,
+        "notes": [
+          {
+            "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+            "confidence": 1.0,
+            "value": "Chưa xác minh giờ mở cửa; điều chỉnh sau khi có dữ liệu thực tế."
+          }
+        ]
+      }
+    ],
+    "weather": [],
+    "tips": [
+      {
+        "source": "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; quy ước lịch trình demo",
+        "confidence": 1.0,
+        "value": "Buổi chiều để trống cho việc trả phòng và rời Đà Nẵng."
+      }
+    ]
+  }
+]

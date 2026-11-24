@@ -1,0 +1,33 @@
+{
+  "pdf": "travelbook.pdf",
+  "page_count": 11,
+  "sections": {
+    "cover": 1,
+    "overview": 2,
+    "day_1": 3,
+    "day_2": 4,
+    "day_3": 5,
+    "budget": 6,
+    "weather": 7,
+    "timeline": 8,
+    "photo_sources_1": 9,
+    "photo_sources_2": 10,
+    "data_notes": 11
+  },
+  "all_folios_valid": true,
+  "vietnamese_text_valid": true,
+  "unverified_photos_embedded": 0,
+  "page_image_counts": [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0
+  ]
+}

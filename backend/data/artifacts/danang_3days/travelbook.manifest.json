@@ -1,0 +1,105 @@
+{
+  "pdf": "travelbook.pdf",
+  "page_count": 11,
+  "sections": [
+    {
+      "id": "cover",
+      "page": 1,
+      "title": "Đà Nẵng - Cẩm nang 3 ngày"
+    },
+    {
+      "id": "overview",
+      "page": 2,
+      "title": "Tổng quan hành trình"
+    },
+    {
+      "id": "day_1",
+      "page": 3,
+      "title": "Ngày 1 — Biển và trung tâm thành phố"
+    },
+    {
+      "id": "day_2",
+      "page": 4,
+      "title": "Ngày 2 — Sơn Trà và chợ Hàn"
+    },
+    {
+      "id": "day_3",
+      "page": 5,
+      "title": "Ngày 3 — Ngũ Hành Sơn và Non Nước"
+    },
+    {
+      "id": "budget",
+      "page": 6,
+      "title": "Ngân sách dự kiến"
+    },
+    {
+      "id": "weather",
+      "page": 7,
+      "title": "Thời tiết"
+    },
+    {
+      "id": "timeline",
+      "page": 8,
+      "title": "Timeline toàn chuyến"
+    },
+    {
+      "id": "photo_sources_1",
+      "page": 9,
+      "title": "Nguồn ảnh và giấy phép"
+    },
+    {
+      "id": "photo_sources_2",
+      "page": 10,
+      "title": "Nguồn ảnh và giấy phép"
+    },
+    {
+      "id": "data_notes",
+      "page": 11,
+      "title": "Nguồn dữ liệu và giới hạn"
+    }
+  ],
+  "demo_data": true,
+  "sources": [
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tiêu đề biên tập",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giới hạn fixture",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; quy ước lịch trình demo",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ghi chú dữ liệu mẫu",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời lượng dự kiến trong kịch bản",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; đơn vị tiền quy ước trong demo",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ngân sách giả định cho một người lớn",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+    "calculation:sum(budget.items.amount); inputs=fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+    "calculation:budget.total<=budget.limit; calculation:sum(budget.items.amount); inputs=fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp; fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ngân sách giả định cho một người lớn",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; brief giả định của fixture",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; biên tập từ itinerary.json ngày 1",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; biên tập từ itinerary.json ngày 2",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; biên tập từ itinerary.json ngày 3",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; gợi ý biên tập demo, không phải kết quả tìm nhà hàng",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi dự toán demo",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; trạng thái dữ liệu fixture",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; trạng thái nguồn ảnh fixture",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder URL, không có ảnh thật",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu tác giả",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; không có dữ liệu giấy phép",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; placeholder trang nguồn",
+    "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; nhãn yêu cầu ảnh demo"
+  ],
+  "confidence": 0.0,
+  "embedded_photo_ids": [],
+  "omitted_photo_ids": [
+    "photo_my_khe",
+    "photo_cham_museum",
+    "photo_dragon_bridge",
+    "photo_linh_ung",
+    "photo_son_tra_stop",
+    "photo_han_market",
+    "photo_marble_mountains",
+    "photo_non_nuoc"
+  ]
+}

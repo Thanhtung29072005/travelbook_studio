@@ -1,0 +1,28 @@
+[project]
+name = "travelbook-studio"
+version = "0.1.0"
+description = "Multi-agent travel guide studio"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "pydantic>=2.12,<3",
+  "pydantic-settings>=2.8,<3",
+  "httpx[socks]>=0.28,<1",
+  "langchain-core>=0.3.63,<2",
+  "langgraph>=1.0,<2",
+  "pillow>=11,<14",
+  "matplotlib>=3.9,<4",
+  "reportlab>=4.3,<5",
+]
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+dev = ["pypdf>=5,<7"]
+
+[tool.setuptools.packages.find]
+include = ["backend*"]
+exclude = ["reference*", "frontend*", "tests*", "scripts*"]

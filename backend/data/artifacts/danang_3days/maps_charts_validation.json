@@ -1,0 +1,265 @@
+{
+  "png_count": 6,
+  "all_dimensions_valid": true,
+  "outputs": [
+    {
+      "file": "maps/day1.png",
+      "size": [
+        1200,
+        800
+      ],
+      "source": [
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tiêu đề biên tập"
+      ],
+      "confidence": 0.3,
+      "notes": [
+        "Straight segments between stop coordinates; not a navigable road route.",
+        "Offline coordinate diagram without map tiles or a routing API.",
+        "Input includes unverified demo coordinates."
+      ],
+      "data": {
+        "day_number": 1,
+        "place_ids": [
+          "my_khe",
+          "cham_museum",
+          "dragon_bridge"
+        ],
+        "coordinates": [
+          [
+            108.247,
+            16.0544
+          ],
+          [
+            108.2233,
+            16.0609
+          ],
+          [
+            108.2275,
+            16.0611
+          ]
+        ],
+        "route_type": "straight_segments"
+      }
+    },
+    {
+      "file": "maps/day2.png",
+      "size": [
+        1200,
+        800
+      ],
+      "source": [
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tiêu đề biên tập"
+      ],
+      "confidence": 0.3,
+      "notes": [
+        "Straight segments between stop coordinates; not a navigable road route.",
+        "Offline coordinate diagram without map tiles or a routing API.",
+        "Input includes unverified demo coordinates."
+      ],
+      "data": {
+        "day_number": 2,
+        "place_ids": [
+          "linh_ung",
+          "son_tra_stop",
+          "han_market"
+        ],
+        "coordinates": [
+          [
+            108.2778,
+            16.1003
+          ],
+          [
+            108.278,
+            16.108
+          ],
+          [
+            108.224,
+            16.0675
+          ]
+        ],
+        "route_type": "straight_segments"
+      }
+    },
+    {
+      "file": "maps/day3.png",
+      "size": [
+        1200,
+        800
+      ],
+      "source": [
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tọa độ xấp xỉ, không dùng để dẫn đường",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tiêu đề biên tập"
+      ],
+      "confidence": 0.3,
+      "notes": [
+        "Straight segments between stop coordinates; not a navigable road route.",
+        "Offline coordinate diagram without map tiles or a routing API.",
+        "Input includes unverified demo coordinates."
+      ],
+      "data": {
+        "day_number": 3,
+        "place_ids": [
+          "marble_mountains",
+          "non_nuoc"
+        ],
+        "coordinates": [
+          [
+            108.2642,
+            16.0035
+          ],
+          [
+            108.276,
+            15.998
+          ]
+        ],
+        "route_type": "straight_segments"
+      }
+    },
+    {
+      "file": "charts/budget.png",
+      "size": [
+        1200,
+        800
+      ],
+      "source": [
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; đơn vị tiền quy ước trong demo",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ngân sách giả định cho một người lớn",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; ước tính demo, không có báo giá nhà cung cấp",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; phạm vi khoản dự trù"
+      ],
+      "confidence": 0.3,
+      "notes": [
+        "Estimated and sourced prices are displayed separately."
+      ],
+      "data": {
+        "currency": "VND",
+        "total": "3700000",
+        "limit": "5000000",
+        "within_budget": true,
+        "categories": {
+          "food": {
+            "sourced": "0",
+            "estimated": "900000"
+          },
+          "accommodation": {
+            "sourced": "0",
+            "estimated": "1200000"
+          },
+          "transport": {
+            "sourced": "0",
+            "estimated": "900000"
+          },
+          "tickets": {
+            "sourced": "0",
+            "estimated": "200000"
+          },
+          "contingency": {
+            "sourced": "0",
+            "estimated": "500000"
+          }
+        }
+      }
+    },
+    {
+      "file": "charts/weather.png",
+      "size": [
+        1200,
+        800
+      ],
+      "source": [],
+      "confidence": 0.0,
+      "notes": [
+        "No numeric forecast available; no weather values were invented."
+      ],
+      "data": {
+        "has_numeric_forecast": false,
+        "day_numbers": [
+          1,
+          2,
+          3
+        ],
+        "forecasts": []
+      }
+    },
+    {
+      "file": "charts/timeline.png",
+      "size": [
+        1400,
+        900
+      ],
+      "source": [
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ đến đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; giờ rời đi đề xuất; giờ địa phương Asia/Ho_Chi_Minh",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; tên địa điểm minh họa",
+        "fixture:danang_3days/v1; dữ liệu demo tự soạn, chưa xác minh thực tế; thời gian di chuyển giả lập, chưa gọi routing API"
+      ],
+      "confidence": 0.3,
+      "notes": [],
+      "data": {
+        "stops": [
+          {
+            "day_number": 1,
+            "place_id": "my_khe",
+            "start_hour": 7.0,
+            "end_hour": 8.5,
+            "travel_hours": 0.0
+          },
+          {
+            "day_number": 1,
+            "place_id": "cham_museum",
+            "start_hour": 9.25,
+            "end_hour": 10.75,
+            "travel_hours": 0.5
+          },
+          {
+            "day_number": 1,
+            "place_id": "dragon_bridge",
+            "start_hour": 16.0,
+            "end_hour": 16.75,
+            "travel_hours": 0.25
+          },
+          {
+            "day_number": 2,
+            "place_id": "linh_ung",
+            "start_hour": 8.0,
+            "end_hour": 9.5,
+            "travel_hours": 0.0
+          },
+          {
+            "day_number": 2,
+            "place_id": "son_tra_stop",
+            "start_hour": 10.0,
+            "end_hour": 11.0,
+            "travel_hours": 0.3333333333333333
+          },
+          {
+            "day_number": 2,
+            "place_id": "han_market",
+            "start_hour": 15.0,
+            "end_hour": 16.5,
+            "travel_hours": 0.75
+          },
+          {
+            "day_number": 3,
+            "place_id": "marble_mountains",
+            "start_hour": 8.0,
+            "end_hour": 10.0,
+            "travel_hours": 0.0
+          },
+          {
+            "day_number": 3,
+            "place_id": "non_nuoc",
+            "start_hour": 10.5,
+            "end_hour": 11.5,
+            "travel_hours": 0.3333333333333333
+          }
+        ]
+      }
+    }
+  ]
+}
